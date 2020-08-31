@@ -1,26 +1,48 @@
-import React from 'react';
+import React, {Component} from 'react';
 import logo from './logo.svg';
+import Header from "./Header";
+import Footer from "./Footer";
+import Program from "./pages/Program";
+import Recipe from "./pages/Recipe";
+import Registration from "./pages/Registration";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import './App.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-function App() {
-  return (
+class App extends Component{
+  state = {
+    contacts: []
+  }
+  // componentDidMount() {
+  //   fetch('http://jsonplaceholder.typicode.com/users')
+  //   .then(res => res.json())
+  //   .then((data) => {
+  //     this.setState({ contacts: data })
+  //     console.log(data)
+  //   })
+  //   .catch(console.log)
+  // }
+  render () {
+    return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Header/>
+      <Router>
+        <Switch>
+          <Route path="/program">
+            <Program />
+          </Route>
+          <Route path="/recipe">
+            <Recipe />
+          </Route>
+          <Route path="/registration">
+            <Registration />
+          </Route>
+        </Switch>
+      </Router>
+      <Footer/>
     </div>
   );
+  }
 }
 
 export default App;
